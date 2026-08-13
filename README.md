@@ -72,3 +72,5 @@ Gift data (giver name, initials, optional photo, and message) is defined in the 
 ---
 
 Made with ❤️ to celebrate Hari's birthday.
+
+Wishes Url - > 1786612615112	Vishnu	Happy Birthday to my incredible wife, my partner in everything, and truly my best friend. Thank you for bringing so much love, warmth, and joy into my life every single day. I'm so lucky to walk through life with you. Here’s to celebrating you today and making this year your best one yet!
