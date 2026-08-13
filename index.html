@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Hari!</title>
+<style>
+  :root {
+    --bg-color: #FAF7F2;
+    --card-bg: #FFFFFF;
+    --accent: #1A1A1A;
+    --gold: #C5A059;
+    --gold-light: #E8D9B8;
+    --text-muted: #707070;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--accent);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .page {
+    display: none;
+    min-height: 100vh;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    animation: pageIn 0.6s ease;
+  }
+  .page.active { display: flex; }
+
+  @keyframes pageIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ---------- COVER PAGE ---------- */
+  #page-cover {
+    justify-content: center;
+    text-align: center;
+    gap: 26px;
+    background-color: #FDECF1;
+    background-image:
+      radial-gradient(circle at 15% 25%, rgba(255,182,193,0.45), transparent 40%),
+      radial-gradient(circle at 85% 15%, rgba(255,200,210,0.4), transparent 38%),
+      radial-gradient(circle at 50% 85%, rgba(230,120,140,0.18), transparent 45%),
+      linear-gradient(160deg, #FFF6F5 0%, #FDECF1 55%, #FBE3EC 100%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 48s-19-12-19-26a9.5 9.5 0 0 1 19-4 9.5 9.5 0 0 1 19 4c0 14-19 26-19 26z' fill='%23e88ba0' fill-opacity='0.10'/%3E%3C/svg%3E");
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, repeat;
+    background-size: auto, auto, auto, auto, 60px 60px;
+  }
+
+  .cover-photo-frame {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    padding: 8px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+  }
+
+  .cover-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #EFE8DA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid #FFF;
+  }
+
+  .cover-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .cover-photo .placeholder-text {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    padding: 20px;
+    line-height: 1.5;
+  }
+
+  .cover-title {
+    font-weight: 300;
+    font-size: 2.1rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .cover-subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    max-width: 340px;
+  }
+
+  .primary-btn {
+    background-color: var(--accent);
+    color: #FFF;
+    border: none;
+    padding: 16px 38px;
+    font-size: 0.95rem;
+    border-radius: 30px;
+    cursor: pointer;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    margin-top: 8px;
+  }
+  .primary-btn:hover { transform: translateY(-2px); background-color: #000; }
+  .primary-btn:disabled {
+    background-color: #CCC; cursor: not-allowed; transform: none; box-shadow: none;
+  }
+
+  /* ---------- WHEEL PAGE ---------- */
+  #page-wheel {
+    justify-content: flex-start;
+    background-color: #0a2b19;
+    background-image:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 2px, transparent 2px, transparent 14px),
+      radial-gradient(circle at 50% 0%, rgba(232,200,116,0.08), transparent 55%),
+      linear-gradient(180deg, #123a24 0%, #0a2b19 40%, #082013 100%);
+  }
+
+  #page-wheel h1 {
+    color: #F3E7C9;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  }
+
+  #page-wheel .subtitle {
+    color: #C9A24C;
+  }
+
+  .container { max-width: 480px; width: 100%; text-align: center; }
+
+  h1 {
+    font-weight: 300; font-size: 2rem; letter-spacing: 3px;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+
+  .subtitle {
+    color: var(--text-muted); font-size: 0.85rem; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 30px;
+  }
+
+  .wheel-section {
+    background: radial-gradient(ellipse at center, #0f3d24 0%, #0a2b19 100%);
+    border-radius: 20px; padding: 34px 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25), inset 0 0 40px rgba(0,0,0,0.3);
+    border: 1px solid rgba(0,0,0,0.2);
+    margin-bottom: 30px; display: flex; flex-direction: column; align-items: center;
+  }
+
+  .wheel-section .subtitle-casino {
+    color: #E8C874; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 20px; font-weight: 700;
+  }
+
+  .wheel-container {
+    position: relative; width: 240px; height: 240px; margin-bottom: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #E8C874, #B8912F, #E8C874);
+    padding: 10px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4), inset 0 0 0 2px rgba(255,255,255,0.15);
+  }
+
+  .pointer {
+    position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+    width: 0; height: 0; border-left: 13px solid transparent; border-right: 13px solid transparent;
+    border-top: 20px solid #E8C874; z-index: 10;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.5));
+  }
+
+  .wheel {
+    width: 100%; height: 100%; border-radius: 50%; border: 3px solid #111;
+    position: relative; overflow: hidden; transition: transform 4s cubic-bezier(0.15, 0.9, 0.25, 1);
+    box-shadow: inset 0 0 0 3px #E8C874, inset 0 0 20px rgba(0,0,0,0.5);
+    background: conic-gradient(#B01E2E 0deg 90deg, #111111 90deg 180deg, #B01E2E 180deg 270deg, #111111 270deg 360deg);
+  }
+
+  .wheel-label {
+    position: absolute; width: 50%; height: 50%; transform-origin: 100% 100%;
+    display: flex; align-items: center; justify-content: center; color: #FFF;
+    font-size: 1.5rem; font-weight: 800; font-family: Georgia, 'Times New Roman', serif;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  }
+  .label-1 { transform: rotate(0deg); }
+  .label-2 { transform: rotate(90deg); }
+  .label-3 { transform: rotate(180deg); }
+  .label-4 { transform: rotate(270deg); }
+  .label-span { transform: rotate(45deg) translate(-10px, -10px); }
+
+  .center-cap {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 54px; height: 54px; background: radial-gradient(circle at 35% 35%, #F5DA9A, #B8912F);
+    border: 2px solid #111;
+    border-radius: 50%; z-index: 5; display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+  }
+
+  .gifts-grid { display: flex; flex-direction: column; gap: 16px; }
+
+  .gift-card {
+    background: var(--card-bg); border-radius: 16px; padding: 20px; text-align: left;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05);
+    opacity: 0.4; filter: blur(2px); transition: all 0.6s ease; position: relative; overflow: hidden;
+  }
+
+  .gift-card.revealed {
+    opacity: 1; filter: blur(0); border-color: var(--gold);
+    box-shadow: 0 10px 25px rgba(197, 160, 89, 0.15); transform: translateY(-2px);
+  }
+
+  .gift-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+
+  .gift-number {
+    font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold); font-weight: 700;
+  }
+
+  .gift-giver {
+    font-size: 0.75rem; background: #F0EAE1; color: #555; padding: 4px 10px;
+    border-radius: 12px; font-weight: 600;
+  }
+
+  .gift-title { font-size: 1.15rem; font-weight: 600; color: var(--accent); }
+
+  .final-note {
+    display: none; margin-top: 30px; background: #FFFDF9; border: 1px solid var(--gold);
+    border-radius: 16px; padding: 24px; text-align: center; animation: fadeIn 1s ease forwards;
+  }
+
+  .final-note p { font-family: Georgia, serif; font-style: italic; line-height: 1.8; color: #444; font-size: 1rem; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ---------- MESSAGE OVERLAY ---------- */
+  .overlay {
+    display: none; position: fixed; inset: 0; background: rgba(20, 18, 15, 0.55);
+    z-index: 100; align-items: center; justify-content: center; padding: 20px;
+  }
+  .overlay.active { display: flex; }
+
+  .message-card {
+    background: var(--card-bg); border-radius: 22px; max-width: 380px; width: 100%;
+    padding: 34px 26px 28px; position: relative; text-align: center;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.25); animation: cardPop 0.45s cubic-bezier(0.2,0.9,0.3,1);
+  }
+
+  @keyframes cardPop {
+    from { opacity: 0; transform: scale(0.85) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .giver-avatar-corner {
+    position: absolute; top: -28px; left: 50%; transform: translateX(-50%);
+    width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    padding: 4px; box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+  }
+
+  .giver-avatar-corner .avatar-inner {
+    width: 100%; height: 100%; border-radius: 50%; background: #2C2C2C; color: #FFF;
+    display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700;
+    overflow: hidden; border: 3px solid #FFF;
+  }
+  .giver-avatar-corner .avatar-inner img { width: 100%; height: 100%; object-fit: cover; }
+
+  .giver-name {
+    margin-top: 48px; font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold); font-weight: 700;
+  }
+
+  .giver-message {
+    font-family: Georgia, serif; font-style: italic; color: #3d3d3d; line-height: 1.7;
+    font-size: 1.02rem; margin: 16px 0 22px;
+  }
+
+  .gift-reveal-box {
+    display: none; margin-top: 4px; padding: 18px; border-radius: 14px;
+    background: #FBF6EC; border: 1px dashed var(--gold);
+  }
+  .gift-reveal-box.show { display: block; animation: fadeIn 0.5s ease; }
+  .gift-reveal-box .gift-title { font-size: 1.2rem; }
+  .gift-reveal-box .gift-caption {
+    font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;
+    letter-spacing: 1.5px; margin-bottom: 6px;
+  }
+
+  .see-gift-btn {
+    background-color: var(--gold); color: #FFF; border: none; padding: 12px 30px;
+    font-size: 0.85rem; border-radius: 26px; cursor: pointer; letter-spacing: 1.5px;
+    text-transform: uppercase; transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  .see-gift-btn:hover { transform: translateY(-2px); background-color: #b08c46; }
+
+  .continue-btn {
+    margin-top: 16px; background: none; border: none; color: var(--text-muted);
+    font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; cursor: pointer;
+    text-decoration: underline; display: none;
+  }
+  .continue-btn.show { display: inline-block; }
+
+  /* ---------- EUROPE ANNIVERSARY PAGE ---------- */
+  #page-europe {
+    justify-content: center;
+    text-align: center;
+    gap: 22px;
+    background-color: #EAF3F6;
+    background-image:
+      radial-gradient(circle at 12% 20%, rgba(255,255,255,0.6), transparent 40%),
+      radial-gradient(circle at 90% 75%, rgba(200,225,235,0.5), transparent 45%),
+      repeating-linear-gradient(120deg, rgba(120,150,160,0.05) 0px, rgba(120,150,160,0.05) 1px, transparent 1px, transparent 60px),
+      linear-gradient(160deg, #F3EFE3 0%, #E7F0F2 55%, #E4EEF3 100%);
+  }
+
+  .europe-eyebrow {
+    color: var(--gold);
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .europe-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+    font-size: 1.9rem;
+    letter-spacing: 1px;
+    max-width: 380px;
+    line-height: 1.3;
+  }
+
+  .travel-photo-frame {
+    width: min(420px, 90vw);
+    aspect-ratio: 4 / 3;
+    border-radius: 14px;
+    padding: 10px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    box-shadow: 0 18px 45px rgba(0,0,0,0.15);
+  }
+
+  .travel-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #EFE8DA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #FFF;
+  }
+
+  .travel-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .travel-photo .placeholder-text {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    padding: 20px;
+    line-height: 1.5;
+  }
+
+  .europe-letter {
+    max-width: 420px;
+    background: var(--card-bg);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 18px;
+    padding: 28px 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  }
+
+  .europe-letter p {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    line-height: 1.85;
+    color: #3d3d3d;
+    font-size: 1.02rem;
+    text-align: left;
+  }
+
+  .europe-letter .signoff {
+    display: block;
+    margin-top: 18px;
+    text-align: right;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* ---------- WISHES WALL PAGE ---------- */
+  #page-wishes {
+    justify-content: flex-start;
+    text-align: center;
+    background-color: var(--bg-color);
+    background-image:
+      radial-gradient(circle at 15% 15%, rgba(197,160,89,0.08), transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(197,160,89,0.08), transparent 45%);
+  }
+
+  .wishes-eyebrow {
+    color: var(--gold);
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .wishes-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+    font-size: 1.7rem;
+    max-width: 380px;
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+
+  .wishes-subtitle {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    max-width: 340px;
+    margin-bottom: 28px;
+  }
+
+  .wishes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    max-width: 460px;
+  }
+
+  .wish-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 18px 20px;
+    text-align: left;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+    border: 1px solid rgba(0,0,0,0.05);
+    animation: fadeIn 0.5s ease;
+  }
+
+  .wish-name {
+    font-size: 0.78rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .wish-message {
+    font-family: Georgia, serif;
+    font-style: italic;
+    color: #3d3d3d;
+    line-height: 1.6;
+    font-size: 0.98rem;
+    word-wrap: break-word;
+  }
+
+  .wishes-empty, .wishes-loading, .wishes-error {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    padding: 30px 10px;
+  }
+
+  .wishes-refresh-btn {
+    margin-top: 22px;
+    background: none;
+    border: 1px solid var(--gold);
+    color: var(--accent);
+    padding: 10px 24px;
+    border-radius: 24px;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  /* ---------- SHARE LINK BOX ---------- */
+  .share-box {
+    margin-top: 34px;
+    width: 100%;
+    max-width: 460px;
+    background: var(--card-bg);
+    border: 1px dashed var(--gold);
+    border-radius: 16px;
+    padding: 22px 20px;
+    text-align: center;
+  }
+
+  .share-box-title {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .share-box-sub {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  .share-link-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .share-link-input {
+    flex: 1;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 10px;
+    padding: 11px 12px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    background: #FBF9F5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .share-copy-btn {
+    background-color: var(--accent);
+    color: #FFF;
+    border: none;
+    padding: 11px 18px;
+    font-size: 0.78rem;
+    border-radius: 10px;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+  }
+
+  .share-copy-btn:hover { background-color: #000; }
+  .share-copy-btn.copied { background-color: #3f8f5c; }
+  .share-copy-btn:disabled {
+    background-color: #CCC; cursor: not-allowed;
+  }
+
+  /* ---------- FRIEND WISH SUBMISSION PAGE ---------- */
+  #page-friend-submit {
+    justify-content: center;
+    text-align: center;
+    background-color: #FDECF1;
+    background-image:
+      radial-gradient(circle at 15% 25%, rgba(255,182,193,0.4), transparent 42%),
+      radial-gradient(circle at 85% 15%, rgba(255,200,210,0.35), transparent 40%),
+      linear-gradient(160deg, #FFF6F5 0%, #FDECF1 55%, #FBE3EC 100%);
+  }
+
+  .friend-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 32px 26px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+  }
+
+  .friend-eyebrow {
+    color: var(--gold);
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .friend-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .friend-subtitle {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 24px;
+  }
+
+  .friend-input, .friend-textarea {
+    width: 100%;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 12px;
+    padding: 13px 14px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    color: var(--accent);
+    background: #FFFDFB;
+    margin-bottom: 14px;
+    resize: none;
+  }
+
+  .friend-input:focus, .friend-textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+  }
+
+  .friend-textarea {
+    min-height: 110px;
+    line-height: 1.5;
+  }
+
+  .friend-error {
+    color: #B01E2E;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+    display: none;
+  }
+
+  .friend-error.show { display: block; }
+
+  .friend-thankyou {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .friend-thankyou.show { display: flex; }
+
+  .friend-thankyou-title {
+    font-family: Georgia, serif;
+    font-size: 1.3rem;
+  }
+
+  .friend-thankyou-sub {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+
+  <!-- ============ PAGE 1: COVER ============ -->
+  <div class="page active" id="page-cover">
+    <div class="cover-photo-frame">
+      <div class="cover-photo">
+        <!-- Replace src below with your actual photo together -->
+        <img alt="You and Hari" id="couplePhoto" style="display:none;">
+        <div class="placeholder-text" id="couplePlaceholder">📷<br>Your photo with Hari goes here<br><span style="font-size:0.65rem;">(swap the image source in the code)</span></div>
+      </div>
+    </div>
+    <div class="cover-title">Happy Birthday, Hari</div>
+    <div class="cover-subtitle">Love, friendship, and marriage, and somehow you still surprise me.</div>
+    <button class="primary-btn" onclick="goToPage('page-wheel')">Click for Your Birthday Surprises</button>
+  </div>
+
+  <!-- ============ PAGE 2: WHEEL ============ -->
+  <div class="page" id="page-wheel">
+    <div class="container">
+      <h1>Happy Birthday!</h1>
+      <div class="subtitle">To My Wife &amp; Best Friend 🎁</div>
+
+      <div class="wheel-section">
+        <div class="subtitle-casino">🎰 Place Your Spin 🎰</div>
+        <div style="color:#E8C874; font-size:0.78rem; margin-top:-14px; margin-bottom:18px; font-style:italic; opacity:0.9;">You usually lose at the casino... but today, the house always lets you win 🎉</div>
+        <div class="wheel-container">
+          <div class="pointer"></div>
+          <div class="wheel" id="wheel">
+            <div class="wheel-label label-1"><span class="label-span">1</span></div>
+            <div class="wheel-label label-2"><span class="label-span">2</span></div>
+            <div class="wheel-label label-3"><span class="label-span">3</span></div>
+            <div class="wheel-label label-4"><span class="label-span">4</span></div>
+          </div>
+          <div class="center-cap">♠</div>
+        </div>
+        <button class="primary-btn" id="spinBtn" onclick="spinWheel()">Spin the Roulette</button>
+      </div>
+
+      <div class="gifts-grid">
+        <div class="gift-card" id="card-1">
+          <div class="gift-header">
+            <span class="gift-number">Bag #1</span>
+            <span class="gift-giver">From Lyn</span>
+          </div>
+          <div class="gift-title" id="title-1">🔒 Locked</div>
+        </div>
+
+        <div class="gift-card" id="card-2">
+          <div class="gift-header">
+            <span class="gift-number">Bag #2</span>
+            <span class="gift-giver">From Bannu</span>
+          </div>
+          <div class="gift-title" id="title-2">🔒 Locked</div>
+        </div>
+
+        <div class="gift-card" id="card-3">
+          <div class="gift-header">
+            <span class="gift-number">Bag #3</span>
+            <span class="gift-giver">From Vishnu</span>
+          </div>
+          <div class="gift-title" id="title-3">🔒 Locked</div>
+        </div>
+
+        <div class="gift-card" id="card-4">
+          <div class="gift-header">
+            <span class="gift-number">Bag #4</span>
+            <span class="gift-giver">From Vishnu</span>
+          </div>
+          <div class="gift-title" id="title-4">🔒 Locked</div>
+        </div>
+      </div>
+
+      <div class="final-note" id="finalNote">
+        <p>"To my wife, my partner, and my best friend,<br><br>
+        You deserve to be spoiled today and every single day. I hope this birthday brings as much joy to your heart as you bring into my life!"</p>
+        <button class="primary-btn" id="oneMoreBtn" style="margin-top:22px; display:none;" onclick="goToPage('page-europe')">One More Surprise</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PAGE 3: EUROPE ANNIVERSARY ============ -->
+  <div class="page" id="page-europe">
+    <div class="europe-eyebrow">To Every Country We've Explored</div>
+    <div class="europe-title">From one country to the next, every trip with you has been an adventure.</div>
+
+    <div class="travel-photo-frame">
+      <div class="travel-photo">
+        <!-- Replace src below with your trip photo together -->
+        <img alt="Traveling together" id="europePhoto" style="display:none;">
+        <div class="placeholder-text" id="europePlaceholder">✈️🗺️<br>Your travel photo goes here<br><span style="font-size:0.7rem;">(swap the image source in the code)</span></div>
+      </div>
+    </div>
+
+    <div class="europe-letter">
+      <p>
+        We've explored so many countries together, and every single one has felt like an adventure with you by my side. There's still so much more of the world left for us to see.
+        <span class="signoff">Happy birthday, my love. Here's to more trips, more places, more us.</span>
+      </p>
+    </div>
+
+    <button class="primary-btn" style="margin-top:8px;" onclick="goToPage('page-wishes')">See Wishes From Everyone Who Loves You</button>
+  </div>
+
+  <!-- ============ PAGE 4: WISHES WALL ============ -->
+  <div class="page" id="page-wishes">
+    <div class="wishes-eyebrow">Birthday Wishes For Hari</div>
+    <div class="wishes-title">Messages From Everyone Who Loves You</div>
+    <div class="wishes-subtitle">Friends have been leaving notes just for you. Here's what they had to say.</div>
+    <div class="wishes-list" id="wishesList">
+      <div class="wishes-loading">Loading wishes…</div>
+    </div>
+    <button class="wishes-refresh-btn" onclick="loadWishes()">Refresh Wishes</button>
+
+    <div class="share-box">
+      <div class="share-box-title">Invite More Wishes</div>
+      <div class="share-box-sub">Share this link with friends and family so they can leave Hari a birthday wish too.</div>
+      <div class="share-link-row">
+        <input class="share-link-input" id="shareLinkInput" type="text" readonly>
+        <button class="share-copy-btn" id="shareCopyBtn" onclick="copyShareLink()">Copy Link</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ FRIEND WISH SUBMISSION PAGE ============ -->
+  <div class="page" id="page-friend-submit">
+    <div class="friend-card">
+      <div id="friendFormWrap">
+        <div class="friend-eyebrow">It's Hari's Birthday!</div>
+        <div class="friend-title">Leave Hari a birthday wish</div>
+        <div class="friend-subtitle">Your message will appear on her birthday wishes page 💛</div>
+        <div class="friend-error" id="friendError"></div>
+        <input class="friend-input" id="friendName" placeholder="Your name" maxlength="60">
+        <textarea class="friend-textarea" id="friendMessage" placeholder="Write your birthday wish for Hari..." maxlength="500"></textarea>
+        <button class="primary-btn" id="friendSubmitBtn" onclick="submitWish()" style="width:100%;">Send Wish</button>
+      </div>
+      <div class="friend-thankyou" id="friendThankYou">
+        <div class="friend-thankyou-title">🎉 Wish sent!</div>
+        <div class="friend-thankyou-sub">Thank you for making Hari's birthday extra special.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ MESSAGE / REVEAL OVERLAY ============ -->
+  <div class="overlay" id="messageOverlay">
+    <div class="message-card">
+      <div class="giver-avatar-corner">
+        <div class="avatar-inner" id="giverAvatar"></div>
+      </div>
+      <div class="giver-name" id="giverName"></div>
+      <div class="giver-message" id="giverMessage"></div>
+
+      <button class="see-gift-btn" id="seeGiftBtn" onclick="revealGiftInOverlay()">Reveal My Bag</button>
+
+      <div class="gift-reveal-box" id="giftRevealBox">
+        <div class="gift-caption">Go open</div>
+        <div class="gift-title" id="giftRevealTitle"></div>
+      </div>
+
+      <br>
+      <button class="continue-btn" id="continueBtn" onclick="closeOverlay()">Continue</button>
+    </div>
+  </div>
+
+  <script>
+    // ---- Wishes wall backend ----
+    // This page is hosted on GitHub Pages (or similar), which has no built-in
+    // database. To let friends' wishes actually save and show up, this uses a
+    // free Google Sheet + Apps Script as the backend. Paste your deployed
+    // Apps Script Web App URL below (see setup instructions provided separately).
+    const WISHES_API_URL = "https://script.google.com/macros/s/AKfycbxSW6S69-m8NX7ZiJur16phDBGigGhYAq4JYB5odzDQmZfiJtNW-mT9HK75ezr8lM7hBg/exec";
+
+    // ---- Configure everything about each gift here ----
+    const giftData = {
+      1: {
+        giver: "Lyn",
+        initials: "L",
+        photo: "", // put Lyn's photo URL here
+        message: "Happy birthday, Hari! Wishing you a year as radiant as you are. Here's something small to keep that glow going. Love you!"
+      },
+      2: {
+        giver: "Bannu",
+        initials: "B",
+        photo: "", // put Bannu's photo URL here
+        message: "Happy birthday! Hope this year brings you joy with every step you take, literally. Enjoy!"
+      },
+      3: {
+        giver: "Vishnu",
+        initials: "V",
+        photo: "", // put Vishnu's photo URL here
+        message: "Happy birthday, Hari! Hope your day is as wonderful as you are. Enjoy your gift!"
+      },
+      4: {
+        giver: "Vishnu",
+        initials: "V",
+        photo: "", // put Vishnu's photo URL here
+        message: "Happy birthday! Here's one more surprise for you, hope it makes you smile."
+      }
+    };
+
+    const segmentAngles = { 1: 45, 2: 315, 3: 225, 4: 135 };
+
+    function shuffle(arr) {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    // Gift 4 is always saved for the final spin; 1-3 come in random order before it.
+    const spinOrder = shuffle([1, 2, 3]).concat([4]);
+    let spinIndex = 0;
+    let currentRotation = 0;
+    let pendingGift = null;
+
+    function goToPage(pageId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+      if (pageId === 'page-wishes') {
+        loadWishes();
+        setShareLink();
+      }
+    }
+
+    // ---- Build the friend-submission link (this page's URL + ?wish=1) ----
+    function setShareLink() {
+      const input = document.getElementById('shareLinkInput');
+      const btn = document.getElementById('shareCopyBtn');
+      if (!input) return;
+
+      const href = window.location.href;
+      const isPreviewSandbox = window.location.protocol === 'about:' ||
+        href.startsWith('about:') ||
+        href.startsWith('blob:') ||
+        href.startsWith('data:');
+
+      if (isPreviewSandbox) {
+        input.value = 'Upload this file online first, then this box will show the real link.';
+        if (btn) btn.disabled = true;
+        return;
+      }
+
+      const url = new URL(href);
+      url.search = '';
+      url.hash = '';
+      url.searchParams.set('wish', '1');
+      input.value = url.toString();
+      if (btn) btn.disabled = false;
+    }
+
+    async function copyShareLink() {
+      const input = document.getElementById('shareLinkInput');
+      const btn = document.getElementById('shareCopyBtn');
+      if (!input) return;
+
+      const text = input.value;
+      let copied = false;
+
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+          copied = true;
+        }
+      } catch (e) {
+        copied = false;
+      }
+
+      if (!copied) {
+        try {
+          input.removeAttribute('readonly');
+          input.focus();
+          input.select();
+          input.setSelectionRange(0, text.length);
+          copied = document.execCommand('copy');
+          input.setAttribute('readonly', true);
+        } catch (e) {
+          copied = false;
+        }
+      }
+
+      const originalText = 'Copy Link';
+      if (copied) {
+        btn.innerText = 'Copied!';
+        btn.classList.add('copied');
+      } else {
+        btn.innerText = 'Select & Copy';
+      }
+      setTimeout(() => {
+        btn.innerText = originalText;
+        btn.classList.remove('copied');
+      }, 2000);
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function apiConfigured() {
+      return WISHES_API_URL && WISHES_API_URL.indexOf('PASTE_YOUR') === -1;
+    }
+
+    // ---- Wishes wall: load all friend-submitted wishes from the Google Sheet ----
+    async function loadWishes() {
+      const listEl = document.getElementById('wishesList');
+      listEl.innerHTML = '<div class="wishes-loading">Loading wishes…</div>';
+
+      if (!apiConfigured()) {
+        listEl.innerHTML = '<div class="wishes-error">Wishes wall isn\'t connected yet. Set WISHES_API_URL in the code.</div>';
+        return;
+      }
+
+      try {
+        const res = await fetch(WISHES_API_URL, { method: 'GET' });
+        if (!res.ok) throw new Error('bad response');
+        const wishes = await res.json();
+
+        if (!Array.isArray(wishes) || !wishes.length) {
+          listEl.innerHTML = '<div class="wishes-empty">No wishes yet — check back soon! 💛</div>';
+          return;
+        }
+
+        wishes.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+
+        listEl.innerHTML = wishes.map(w => `
+          <div class="wish-card">
+            <div class="wish-name">${escapeHtml(w.name || 'A friend')}</div>
+            <div class="wish-message">${escapeHtml(w.message || '')}</div>
+          </div>
+        `).join('');
+      } catch (e) {
+        listEl.innerHTML = '<div class="wishes-error">Couldn\'t load wishes right now. Try refreshing.</div>';
+      }
+    }
+
+    // ---- Friend submission page ----
+    async function submitWish() {
+      const nameEl = document.getElementById('friendName');
+      const messageEl = document.getElementById('friendMessage');
+      const errorEl = document.getElementById('friendError');
+      const btn = document.getElementById('friendSubmitBtn');
+
+      const name = nameEl.value.trim();
+      const message = messageEl.value.trim();
+
+      errorEl.classList.remove('show');
+
+      if (!name || !message) {
+        errorEl.innerText = 'Please add your name and a short message before sending.';
+        errorEl.classList.add('show');
+        return;
+      }
+
+      if (!apiConfigured()) {
+        errorEl.innerText = 'Wishes wall isn\'t connected yet. Set WISHES_API_URL in the code.';
+        errorEl.classList.add('show');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerText = 'Sending...';
+
+      try {
+        const res = await fetch(WISHES_API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // avoids CORS preflight
+          body: JSON.stringify({ name: name, message: message })
+        });
+        if (!res.ok) throw new Error('bad response');
+
+        document.getElementById('friendFormWrap').style.display = 'none';
+        document.getElementById('friendThankYou').classList.add('show');
+      } catch (e) {
+        errorEl.innerText = 'Something went wrong sending your wish. Please try again.';
+        errorEl.classList.add('show');
+        btn.disabled = false;
+        btn.innerText = 'Send Wish';
+      }
+    }
+
+    // If this link was opened with ?wish=1, show ONLY the wish-submission form.
+    // Every other page is removed from the DOM entirely (not just hidden), so a
+    // friend can't reach the wishes list, gifts, or anything else on this link.
+    (function checkFriendMode() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('wish') === '1') {
+        document.querySelectorAll('.page').forEach(p => {
+          if (p.id === 'page-friend-submit') {
+            p.classList.add('active');
+          } else {
+            p.remove();
+          }
+        });
+      }
+    })();
+
+    function spinWheel() {
+      if (spinIndex >= spinOrder.length) return;
+
+      const spinBtn = document.getElementById('spinBtn');
+      spinBtn.disabled = true;
+
+      const selectedGift = spinOrder[spinIndex];
+      spinIndex++;
+
+      const targetBaseAngle = segmentAngles[selectedGift];
+      const extraSpins = (5 + Math.floor(Math.random() * 3)) * 360;
+      const currentMod = currentRotation % 360;
+      let angleDiff = targetBaseAngle - currentMod;
+      if (angleDiff <= 0) angleDiff += 360;
+      currentRotation += extraSpins + angleDiff;
+
+      const wheel = document.getElementById('wheel');
+      wheel.style.transform = `rotate(${currentRotation}deg)`;
+
+      setTimeout(() => {
+        openMessageOverlay(selectedGift);
+      }, 4000);
+    }
+
+    function openMessageOverlay(num) {
+      pendingGift = num;
+      const data = giftData[num];
+
+      const avatarEl = document.getElementById('giverAvatar');
+      if (data.photo) {
+        avatarEl.innerHTML = `<img src="${data.photo}" alt="${data.giver}">`;
+      } else {
+        avatarEl.innerHTML = data.initials;
+      }
+
+      document.getElementById('giverName').innerText = `From ${data.giver}`;
+      document.getElementById('giverMessage').innerText = data.message;
+
+      // reset reveal state
+      document.getElementById('giftRevealBox').classList.remove('show');
+      document.getElementById('seeGiftBtn').style.display = 'inline-block';
+      document.getElementById('continueBtn').classList.remove('show');
+
+      document.getElementById('messageOverlay').classList.add('active');
+    }
+
+    function revealGiftInOverlay() {
+      document.getElementById('giftRevealTitle').innerText = `🎁 Bag #${pendingGift}`;
+      document.getElementById('giftRevealBox').classList.add('show');
+      document.getElementById('seeGiftBtn').style.display = 'none';
+      document.getElementById('continueBtn').classList.add('show');
+
+      // also mark card as revealed in the background grid
+      const card = document.getElementById(`card-${pendingGift}`);
+      const title = document.getElementById(`title-${pendingGift}`);
+      card.classList.add('revealed');
+      title.innerText = `Go open Bag #${pendingGift} 🎁`;
+    }
+
+    function closeOverlay() {
+      document.getElementById('messageOverlay').classList.remove('active');
+      pendingGift = null;
+
+      const spinBtn = document.getElementById('spinBtn');
+      const giftsLeft = spinOrder.length - spinIndex;
+      if (giftsLeft > 0) {
+        spinBtn.disabled = false;
+        spinBtn.innerText = `Spin Again (${giftsLeft} left)`;
+      } else {
+        spinBtn.innerText = "All Gifts Unlocked!";
+        document.getElementById('finalNote').style.display = 'block';
+        document.getElementById('oneMoreBtn').style.display = 'inline-block';
+      }
+    }
+  </script>
+</body>
+</html>
